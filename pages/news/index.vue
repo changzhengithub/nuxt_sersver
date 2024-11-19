@@ -25,8 +25,8 @@
           <div class="wrap-header">新闻动态</div>
           <div class="wrap-list">
             <div class="list-item" v-for="(item, index) in newsList" :key="index" @click="gotoPage(item.id)">
-              <div class="item-title">{{ item.company }}</div>
-              <div class="item-desc">{{ item.des }}</div>
+              <div class="item-title">{{ item.title }}</div>
+              <div class="item-desc">{{ item.body }}</div>
             </div>
           </div>
         </div>
@@ -51,12 +51,11 @@ export default {
     //   pageNum: 1,
     //   pageSize: 9
     // }
-    return $axios.$get('/api/owner/program/lists', {
+    return $axios.$get('/posts', {
       // params
-    }).then((res) => {
-      const { data } = res.data
-      return { newsList: data }
-    }).catch((err) => {
+    }).then(res => {
+      return { newsList: res.slice(0, 10) }
+    }).catch(err => {
       error({ statusCode: err.code, message: err.message })
       // return { newsList: [] }
     })

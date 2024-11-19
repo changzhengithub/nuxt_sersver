@@ -1,8 +1,8 @@
 <template>
   <div class="index">
     <div class="index-wrap">
-      <div class="wrap-header">{{ newsDetail.company }}</div>
-      <div class="wrap-content">{{ newsDetail.des }}</div>
+      <div class="wrap-header">{{ newsDetail.title }}</div>
+      <div class="wrap-content">{{ newsDetail.body }}</div>
     </div>
   </div>
 </template>
@@ -19,14 +19,9 @@ export default {
   layout: 'BasicLayout',
   // 用户获取数据
   asyncData ({ $axios, params, error }) {
-    return $axios.$get('/api/owner/program/info', {
-      params: {
-        id: params.id
-      }
-    }).then((res) => {
-      const data = res.data
-      return { newsDetail: data }
-    }).catch((err) => {
+    return $axios.$get(`/posts/${params.id}`).then(res => {
+      return { newsDetail: res }
+    }).catch(err => {
       error({ statusCode: err.code, message: err.message })
       // return { newsList: [] }
     })

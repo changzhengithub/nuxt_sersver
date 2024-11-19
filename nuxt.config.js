@@ -48,24 +48,24 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios', // nuxt自带的axios请求模块
-    '@nuxtjs/proxy',
+    // '@nuxtjs/proxy',
     '@nuxtjs/style-resources'
   ],
 
   // Axios 模块设置
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://jsonplaceholder.typicode.com',
     // 是否开启代理
-    proxy: true
+    // proxy: true
   },
 
   // 跨域设置
-  proxy: {
-    '/api': {
-      target: 'https://api.sec.yunsee.cn' // 目标接口域名
-    }
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'https://api.sec.yunsee.cn' // 目标接口域名
+  //   }
+  // },
 
   // less配置
   styleResources: {
